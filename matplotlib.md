@@ -1,4 +1,4 @@
-## [Matplotlib fill area](http://stackoverflow.com/questions/16417496/matplotlib-fill-between-multiple-lines)（matplotlib填充区域）
+## [Matplotlib fill area](http://stackoverflow.com/questions/16417496/matplotlib-fill-between-multiple-lines)
 ```python
 	
 If you start the plot in point (0, 0), and therefore do not need to consider the area of the polygon not in the first quadrant, then this should do the trick in this particular situation:
