@@ -90,3 +90,47 @@ fig.canvas.draw()
 data = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8, sep='')
 data = data.reshape(fig.canvas.get_width_height()[::-1] + (3,))
 ```
+
+## Matplotlib: capture the key press
+```python
+import numpy as np
+from matplotlib.widgets import Button, RadioButtons
+import matplotlib.pyplot as plt
+import skimage.io
+
+thresh = 0.5
+i = 1
+def on_press(event):
+    global thresh
+    global i
+    if event.inaxes == None:
+        print("none")
+        # return
+    fig = event.inaxes.figure
+    if event.key == 'left':
+        thresh -= 0.1
+    elif event.key == 'right':
+        thresh += 0.1
+    elif event.key == 'up':
+        thresh += 0.01
+    elif event.key == 'down':
+        thresh -= 0.01
+    elif event.key == '+':
+        i += 1
+    elif event.key == '-':
+        i -= 1
+    test_18 = np.load('../drive_seg_result/%02d.npy'%i)
+    plt.imshow(test_18[1] > thresh, cmap='gray')
+    plt.title('%02d.png'%i)
+    print(thresh, event.x, event.key)
+    skimage.io.imsave('%02d_seg.png', (test_18[1] > thresh)*255)
+    fig.canvas.draw()
+
+if __name__ == "__main__":
+    fig = plt.figure()
+    fig.canvas.mpl_connect("key_press_event", on_press)
+    test_18 = np.load('../drive_seg_result/%02d.npy'%i)
+    ax1 = fig.add_subplot(111)
+    ax1.imshow(test_18[1], cmap = 'gray')
+    plt.show()
+```
