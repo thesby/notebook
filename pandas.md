@@ -67,14 +67,52 @@ def GroupMeanMoney(x):
 print df_group.apply(GroupMeanMoney)
 
 
+```
+
+## Drop / Insert 
+```python
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(columns=['name', 'day', 'money'])
+df['name'] = ['Tim', 'Lily', 'Lily', 'Bob', 'Bob', 'Bob']
+df['day'] = [1, 1, 2, 1, 2, 3]
+df['money'] = [100, 100, 200, 300, 400, 500]
+
 # insert a new column
 df['remark'] = ['lost', 'book', 'meat', 'lost', 'breakfast', 'don`t know']
 print df
 df.insert(0, 'remark2', ['lost', 'book', 'meat', 'lost', 'breakfast', 'don`t know'])
 
+# insert a new row
+print df.append([dict(name='Jobs', day=1, money=1000, remark='apple')])
+print df.append(df.loc[0])
+print df.loc[0]
+
 # drop data
 data_dropped = df.drop(['remark2'], axis=1)
 ```
+
+## Merge
+Merge: Append two DataFrame with overlapping index. Similar as the 'Join' of SQL
+```python
+import pandas as pd
+import numpy as np
+rng = pd.date_range('2017-11-11', periods=6)  # rng = pd.date_range('2017-11-11', '2017-11-15')
+df1 = pd.DataFrame(np.random.randn(6, 3), index=rng, columns=list('ABC'))
+df2 = pd.DataFrame(np.random.randn(6, 3), index=rng, columns=list('DEF'))
+print pd.merge(df1, df2, left_index=True, right_index=True)
+```
+how : {‘left’, ‘right’, ‘outer’, ‘inner’}, default ‘inner’
+* left: use only keys from left frame, similar to a SQL left outer join; preserve key order
+* right: use only keys from right frame, similar to a SQL right outer join; preserve key order
+* outer: use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically
+* inner: use intersection of keys from both frames, similar to a SQL inner join; preserve the order of the left keys
+```python
+df = pd.DataFrame(data={'Area' : ['A']*5 + ['C']*2,'Bins' : [110]*2 + [160]*3 + [40]*2,'Test_0' : [0, 1, 0, 1, 2, 0, 1],'Data' : np.random.randn(7)})
+df['Test_1'] = df['Test_0'] - 1
+print pd.merge(df, df, left_on=['Bins', 'Area','Test_0'], right_on=['Bins', 'Area','Test_1'],suffixes=('_L','_R'))
+```
+
 
 
 
