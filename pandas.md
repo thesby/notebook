@@ -94,6 +94,8 @@ data_dropped = df.drop(['remark2'], axis=1)
 
 ## Merge
 Merge: Append two DataFrame with overlapping index. Similar as the 'Join' of SQL
+
+### Merge by index
 ```python
 import pandas as pd
 import numpy as np
@@ -107,10 +109,13 @@ how : {‘left’, ‘right’, ‘outer’, ‘inner’}, default ‘inner’
 * right: use only keys from right frame, similar to a SQL right outer join; preserve key order
 * outer: use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically
 * inner: use intersection of keys from both frames, similar to a SQL inner join; preserve the order of the left keys
+
+### Merge by column
 ```python
+# reference: http://pandas.pydata.org/pandas-docs/stable/merging.html
 df = pd.DataFrame(data={'Area' : ['A']*5 + ['C']*2,'Bins' : [110]*2 + [160]*3 + [40]*2,'Test_0' : [0, 1, 0, 1, 2, 0, 1],'Data' : np.random.randn(7)})
 df['Test_1'] = df['Test_0'] - 1
-print pd.merge(df, df, left_on=['Bins', 'Area','Test_0'], right_on=['Bins', 'Area','Test_1'],suffixes=('_L','_R'))
+print pd.merge(df, df, left_on=['Bins', 'Area','Test_0'], right_on=['Bins', 'Area','Test_1'],suffixes=('_L','_R'), indicator=True)
 ```
 
 
