@@ -43,4 +43,44 @@ df4 = df3.rename(columns={'A': 'Alpha'})
 df3.rename(index={0:'Zero'},columns={'A': 'Alpha'}, inplace=True)
 ```
 
+## groupby
+```python
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(columns=['name', 'day', 'money'])
+df['name'] = ['Tim', 'Lily', 'Lily', 'Bob', 'Bob', 'Bob']
+df['day'] = [1, 1, 2, 1, 2, 3]
+df['money'] = [100, 100, 200, 300, 400, 500]
+print df
+
+df_group = df.groupby(['name'])
+print df_group.groups
+print df_group.groups['Bob']
+# operate group
+print df_group.apply(np.max)
+# design func
+def GroupMeanMoney(x):
+    day = np.min(x['day'])
+    money = np.mean(x['money'])
+    name = np.min(x['name'])
+    return pd.Series([name, day, money], index=['name', 'day', 'money'])
+print df_group.apply(GroupMeanMoney)
+
+
+# insert a new column
+df['remark'] = ['lost', 'book', 'meat', 'lost', 'breakfast', 'don`t know']
+print df
+df.insert(0, 'remark2', ['lost', 'book', 'meat', 'lost', 'breakfast', 'don`t know'])
+
+# drop data
+data_dropped = df.drop(['remark2'], axis=1)
+```
+
+
+
+
+
+
+
+
 
