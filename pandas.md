@@ -118,12 +118,34 @@ df['Test_1'] = df['Test_0'] - 1
 print pd.merge(df, df, left_on=['Bins', 'Area','Test_0'], right_on=['Bins', 'Area','Test_1'],suffixes=('_L','_R'), indicator=True)
 ```
 
+## Sort DataFrame
+```
+ df.sort_index(axis=1, ascending=False)
+ df.sort_values(by='B')
+```
 
+# Histogram
+```
+pd.Series(np.random.randint(0, 7, size=10))
+s.value_counts()
+```
 
+# Get max index of each group
+```
+df = pd.DataFrame({'animal': 'cat dog cat fish dog cat cat'.split(),
+    'size': list('SSMMMLL'),
+    'weight': [8, 10, 11, 1, 20, 12, 12],
+    'adult' : [False]*5 + [True]*2})
+df.groupby('animal').apply(lambda subf: subf['size'][subf['weight'].idxmax()])
+```
 
-
-
-
+# string operation
+```
+s = pd.Series(['A', 'B', 'C', 'Aaba', 'Baca', np.nan, 'CABA', 'dog', 'cat'])
+s.str.lower()
+s.str.len()
+s[s.str.len() > 1]
+```
 
 
 
