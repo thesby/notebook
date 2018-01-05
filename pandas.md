@@ -66,8 +66,26 @@ def GroupMeanMoney(x):
     return pd.Series([name, day, money], index=['name', 'day', 'money'])
 print df_group.apply(GroupMeanMoney)
 ```
-Process groups with joblib to accelerate
+Process groups with joblib or multiprocessing to accelerate
 https://stackoverflow.com/questions/26187759/parallelize-apply-after-pandas-groupby
+```python
+#coding=utf-8
+import pandas as pd
+import numpy as np
+from multiprocessing import Pool
+
+def process_group(group):
+    # group: ['id',  'pv'] 
+    return pd.Series([group[0], np.sum(group[1].pv)], index=['id', 'pv'])
+
+if __name__ == '__main__':
+    data = pd.DataFrame([[1, 2], [1, 3], [1, 4], [2, 3], [2, 5], [4, 1]], columns=['id', 'pv'])
+    print data
+    data_group = data.groupby('id')
+    pool = Pool(2)
+    data_process = pool.map(process_group, data_group)
+    print pd.DataFrame(data_process)
+```
 
 ## Drop / Insert 
 ```python
