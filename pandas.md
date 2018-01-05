@@ -65,9 +65,9 @@ def GroupMeanMoney(x):
     name = np.min(x['name'])
     return pd.Series([name, day, money], index=['name', 'day', 'money'])
 print df_group.apply(GroupMeanMoney)
-
-
 ```
+Process groups with joblib to accelerate
+https://stackoverflow.com/questions/26187759/parallelize-apply-after-pandas-groupby
 
 ## Drop / Insert 
 ```python
