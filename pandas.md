@@ -1,5 +1,8 @@
 # pandas
 
+## settings of pandas
+https://pandas.pydata.org/pandas-docs/stable/options.html#frequently-used-options
+
 ## index DataFrame
 ```python
 import pandas as pd
