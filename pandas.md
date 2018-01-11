@@ -3,7 +3,7 @@
 ## settings of pandas
 https://pandas.pydata.org/pandas-docs/stable/options.html#frequently-used-options
 ```python
-import pandas
+import pandas as pd
 pd.set_option('display.width', 140)  # the width of dispaly, default is 80.
 ```
 
