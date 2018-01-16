@@ -1,3 +1,6 @@
+## Ticks
+https://www.cnblogs.com/nju2014/p/5707980.html
+
 ## [Matplotlib fill area](http://stackoverflow.com/questions/16417496/matplotlib-fill-between-multiple-lines)
 ```python
 	
