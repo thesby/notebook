@@ -1,3 +1,4 @@
+pyplot api  https://matplotlib.org/api/pyplot_api.html
 ## Control Ticks
 ```python
 # return locs, labels where locs is an array of tick locations and
