@@ -143,3 +143,34 @@ sp3 = plt.subplot((gs[2, :]))
 sp4 = plt.subplot((gs[3, :])) 
 sp5 = plt.subplot((gs[4, :])) 
 ```
+## Multi x-axis or y-axis
+```python
+# 使用twinx()和twiny()方法。
+# twinx()：共用X轴，使用新的Y轴坐标
+# twiny()：共用Y轴，使用新的X轴坐标
+
+# 创建新Y轴坐标：
+ax1 = sp1.twinx()      # 第二Y轴（共用X轴）
+ax1.set_xlim(0, n-1)   # 设置与sp1相同的X轴范围（不设置默认也是相同的X轴范围），如果修改则sp1的X轴范围也会同时改变
+ymin, ymax = sp1.get_ylim()
+ax1.set_ylim(ymin-5, ymax+5)   # Y轴与sp1的Y轴是独立开来的，可以随意设置而不影响sp1的Y轴范围
+ax1.set_ylabel("第二Y轴：红色", color="r")
+for ytl in ax1.get_yticklabels():  # 设置为第二Y轴坐标显示为红色
+    ytl.set_color("r")
+ax1.set_xticks([])     # 此处设置为不显示X轴坐标，则整个图形就不显示X轴坐标了（共用sp1的X轴坐标），同时X轴的顶部和底部标尺都隐藏了
+ax1.plot(data1, linewidth=0.5, color="r")    # 绘制第二Y轴坐标系上的图形
+
+#创建新X轴坐标：
+ax2 = sp1.twiny()      # 第二X轴（共用Y轴）
+ax2.set_xlim(0, len(data1)-1)   # X轴与sp1的X轴是独立开来的，可以随意设置而不影响sp1的X轴范围
+ymin, ymax = sp1.get_ylim()
+ax2.set_ylim(ymin, ymax)   # Y轴与sp1的Y轴是共用的，如果不设置则影响sp1的Y轴显示
+ax2.set_xlabel("第二X轴：绿色", color="green")
+for xtl in ax2.get_xticklabels():  # 设置为第二X轴坐标显示为绿色
+    xtl.set_color("g")
+ax2.plot(data1, linewidth=0.5, color="g")   # 绘制第二X轴坐标系上的图形
+ax2.plot([0, n], [0, 0], linewidth=0.1, color="grey")  # 绘制0基准线
+# hide the top iden
+ax2 = sp.twiny()
+ax2.set_xticks([])
+```
