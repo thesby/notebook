@@ -1,6 +1,7 @@
 pyplot api  https://matplotlib.org/api/pyplot_api.html
 ## Control Ticks
 ```python
+from matplotlib.pyplot import xticks
 # return locs, labels where locs is an array of tick locations and
 # labels is an array of tick labels.
 locs, labels = xticks()
