@@ -1,4 +1,5 @@
 pyplot api  https://matplotlib.org/api/pyplot_api.html
+https://blog.csdn.net/helunqu2017/article/details/78652261
 ## Control Ticks
 ```python
 from matplotlib.pyplot import xticks
