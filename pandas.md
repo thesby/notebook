@@ -1,5 +1,9 @@
 # pandas
 
+## learning materials
+http://manishamde.github.io/blog/2013/03/07/pandas-and-python-top-10/
+http://tomaugspurger.github.io/modern-1-intro
+
 ## settings of pandas
 https://pandas.pydata.org/pandas-docs/stable/options.html#frequently-used-options
 ```python
