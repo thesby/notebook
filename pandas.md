@@ -2,6 +2,7 @@
 
 ## learning materials
 http://manishamde.github.io/blog/2013/03/07/pandas-and-python-top-10/
+
 http://tomaugspurger.github.io/modern-1-intro
 
 ## settings of pandas
