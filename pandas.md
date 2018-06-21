@@ -84,7 +84,7 @@ print df_group.apply(GroupMeanMoney)
 ```
 x = pd.DataFrame([[1,2,3], [1,2,4], [1,2,5], [2,2,1]], columns=['A', 'B', 'C'])
 x['B_rank'] = x.groupby(['A'])['B'].rank(method='min')
-x['C_rank'] = x.groupby(['A'])['B'].rank(method='min', ascending=False)
+x['C_rank'] = x.groupby(['A'])['C'].rank(method='min', ascending=False)
 ```
 
 Process groups with joblib or multiprocessing to accelerate
