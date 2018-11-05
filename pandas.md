@@ -186,5 +186,14 @@ s.str.len()
 s[s.str.len() > 1]
 ```
 
-
+# Render to_html
+```python
+df = pd.DataFrame([[1,2,3], [4,5,6]], columns=list('ABC'), index=list('xy'))
+df_highlight = df.copy()
+df_highlight.loc[:, :] = ''
+highlight_pos = [['x', 'A'], ['y', 'C']]
+for pos in highlight_pos:
+    df_highlight.loc[pos[0], pos[1]] = 'color:red'
+html = df.style.apply(lambda row: df_highlight, axis=None).render()
+```
 
