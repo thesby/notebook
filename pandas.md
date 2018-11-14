@@ -196,4 +196,6 @@ for pos in highlight_pos:
     df_highlight.loc[pos[0], pos[1]] = 'color:red'
 html = df.style.apply(lambda row: df_highlight, axis=None).render()
 ```
-
+# Apply in parallel
+https://medium.com/@jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9
+swiftapply, multiprocessing, dask
