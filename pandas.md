@@ -199,3 +199,33 @@ html = df.style.apply(lambda row: df_highlight, axis=None).render()
 # Apply in parallel
 https://medium.com/@jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9
 swiftapply, multiprocessing, dask
+```python
+import pandas as pd
+from multiprocessing import Pool
+
+def pd_parallel_map(df, field, func, nthreads=4):
+    '''func(idx, x): return (idx, x+1)'''
+    pool = Pool(nthreads)
+    res = [pool.apply_async(func, args=(idx, x,)) for idx, x in enumerate(df[field])]
+    output = [p.get() for p in res]
+    output.sort(key=lambda x: x[0])
+    pool.close()
+    pool.join()
+    return [p[1] for p in output]
+    
+    
+def pd_parallel_apply_row(df, func, nthreads=4):
+    '''func(idx, row): return (idx, row.x+1)'''
+    pool = Pool(nthreads)
+    idx = 0
+    args = []
+    for _, row in df.iterrows():
+        args.append([idx, row])
+        idx += 1
+    res = [pool.apply_async(func, args=arg) for arg in args]
+    output = [p.get() for p in res]
+    output.sort(key=lambda x: x[0])
+    pool.close()
+    pool.join()
+    return [p[1] for p in output]
+```
