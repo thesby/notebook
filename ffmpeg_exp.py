@@ -21,8 +21,6 @@ def create_pipe():
 def main(video_path):
     in_pipe = create_pipe()
 
-    res = BytesIO()
-
     content = open(video_path, "rb").read()
     print("write content to stdin: ", len(content))
     out, err = in_pipe.communicate(input=content)
