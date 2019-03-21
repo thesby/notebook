@@ -26,7 +26,6 @@ def main(video_path):
     out, err = in_pipe.communicate(input=content)
 
     in_pipe.wait()
-    pdb.set_trace()
     
 
 if __name__ == "__main__":
