@@ -216,7 +216,7 @@ def pd_parallel_map(df, field, func, nthreads=4):
 def pd_parallel_apply_row(df, func, nthreads=4):
     '''func(idx, row): return (idx, row.x+1)'''
     pool = Pool(nthreads)
-    res = [pool.apply_async(func, args=row) for idx, row in df.iterrows()]
+    res = [pool.apply_async(func, args=(idx, row)) for idx, row in df.iterrows()]
     output = [p.get() for p in res]
     pool.close()
     pool.join()
