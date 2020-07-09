@@ -10,6 +10,11 @@ https://pandas.pydata.org/pandas-docs/stable/options.html#frequently-used-option
 ```python
 import pandas as pd
 pd.set_option('display.width', 140)  # the width of dispaly, default is 80.
+# dispplay all content
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', -1)
 ```
 
 ## index DataFrame
